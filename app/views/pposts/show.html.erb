@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @ppost.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @ppost.body %>
+</p>
+
+<%= link_to 'Edit', edit_ppost_path(@ppost) %> |
+<%= link_to 'Back', pposts_path %><br>
+<h2>Comments</h2>
+<% @ppost.comments.each do |comment| %>
+<%= comment.body %> <br>
+<% end %>

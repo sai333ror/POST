@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Pposts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Body</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pposts.each do |ppost| %>
+      <tr>
+        <td><%= ppost.title %></td>
+        <td><%= ppost.user.first_name %></td>
+        <td><%= ppost.body %></td>
+        <td><%= link_to 'Show', ppost %></td>
+        <% if user_signed_in? %>
+            <% if current_user.id == ppost.user_id %>
+                <td><%= link_to 'Edit', edit_ppost_path(ppost) %></td>
+                <td><%= link_to 'Destroy', ppost, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+          <td><%= link_to 'Comment', new_ppost_comment_path(ppost) %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ppost', new_ppost_path %>
